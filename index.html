@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkadia Coffee Pontianak | Arkadia BAR</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        arkadia: {
+                            red: '#8A151B',       // Primary Crimson / Maroon Red
+                            darkred: '#560B0F',   // Deep Wine Red
+                            lightred: '#B3242B',  // Accent Red
+                            cream: '#F8F3EC',     // Warm Cream Background
+                            sand: '#EFE6D8',      // Secondary Warm Cream
+                            gold: '#C99E57',      // Soft Champagne Gold
+                            ink: '#241414'        // Deep Espresso Text
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pola latar belakang elegan bertema merah marun */
+        .crimson-pattern {
+            background-color: #6B0F14;
+            background-image: radial-gradient(rgba(201, 158, 87, 0.14) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        /* Efek Kartu Polaroid */
+        .polaroid-card {
+            background: #FFFFFF;
+            padding: 12px 12px 18px 12px;
+            box-shadow: 0 10px 25px -5px rgba(86, 11, 15, 0.14), 0 4px 10px -2px rgba(0, 0, 0, 0.06);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        }
+        .polaroid-card:hover {
+            transform: translateY(-6px) rotate(0deg) scale(1.02) !important;
+            box-shadow: 0 20px 35px -8px rgba(138, 21, 27, 0.25);
+            z-index: 10;
+        }
+        /* Sembunyikan scrollbar horizontal pada filter kategori mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-arkadia-cream text-arkadia-ink font-sans antialiased selection:bg-arkadia-red selection:text-arkadia-cream overflow-x-hidden">
+
+    <!-- Navbar Sticky -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-arkadia-darkred/95 backdrop-blur-md border-b border-arkadia-gold/25 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-arkadia-red border border-arkadia-gold flex items-center justify-center text-arkadia-gold font-serif font-bold text-xl shadow-inner group-hover:scale-105 transition-transform">
+                        A
+                    </div>
+                    <div>
+                        <span class="block font-serif text-2xl font-bold text-arkadia-cream tracking-wider leading-none">ARKADIA</span>
+                        <span class="block text-[10px] tracking-[0.28em] text-arkadia-gold uppercase mt-0.5">Coffee &amp; Bar</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-7 text-sm font-medium">
+                    <a href="#home" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Ringkasan</a>
+                    <a href="#tentang" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Tentang</a>
+                    <a href="#galeri" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Suasana</a>
+                    <a href="#menu" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Menu</a>
+                    <a href="#ulasan" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Ulasan</a>
+                    <a href="#lokasi" class="text-arkadia-cream hover:text-arkadia-gold transition-colors">Lokasi</a>
+                    <a href="https://wa.me/6285117598700?text=Halo%20Arkadia%20Coffee%20Pontianak,%20saya%20ingin%20pesan%20/%20reservasi%20meja." target="_blank" rel="noopener noreferrer" class="bg-arkadia-red hover:bg-arkadia-lightred text-arkadia-cream border border-arkadia-gold/60 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all shadow-md">
+                        <i class="fab fa-whatsapp mr-1.5 text-arkadia-gold"></i> Pesan
+                    </a>
+                </nav>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-3 rounded-xl text-arkadia-cream hover:text-arkadia-gold hover:bg-arkadia-red/40 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-arkadia-darkred border-t border-arkadia-gold/20 px-4 pt-3 pb-5 space-y-2">
+            <a href="#home" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Ringkasan</a>
+            <a href="#tentang" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Tentang Kami</a>
+            <a href="#galeri" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Galeri Suasana</a>
+            <a href="#menu" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Menu Lengkap</a>
+            <a href="#ulasan" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Ulasan Pelanggan</a>
+            <a href="#lokasi" class="mobile-link block px-4 py-2.5 rounded-xl text-arkadia-cream hover:bg-arkadia-red/50 hover:text-arkadia-gold font-medium">Lokasi &amp; Rute</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 crimson-pattern overflow-hidden">
+        <!-- Background Image Overlay -->
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80" 
+             onerror="this.src='https://placehold.co/1600x900/560B0F/F8F3EC?text=Arkadia+Coffee+Pontianak'"
+             alt="Suasana Arkadia Coffee Pontianak" 
+             class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity">
+        <div class="absolute inset-0 bg-gradient-to-br from-arkadia-darkred/95 via-arkadia-red/85 to-arkadia-darkred/95"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <!-- Google Rating & Price Pill -->
+                    <div class="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2 bg-arkadia-darkred/80 border border-arkadia-gold/40 px-4 py-2 rounded-full text-xs sm:text-sm text-arkadia-cream mb-6 shadow-md">
+                        <span class="font-bold text-arkadia-gold flex items-center gap-1">
+                            <i class="fas fa-star"></i> 4,1
+                        </span>
+                        <span class="text-arkadia-cream/80">(149 ulasan)</span>
+                        <span class="text-arkadia-gold">&middot;</span>
+                        <span>Rp 25–50 rb per orang</span>
+                        <span class="text-arkadia-gold">&middot;</span>
+                        <span class="text-arkadia-gold font-medium">Kedai Kopi</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-arkadia-cream leading-tight mb-3 drop-shadow">
+                        Arkadia Coffee <span class="text-arkadia-gold italic block sm:inline">Pontianak</span>
+                    </h1>
+                    <p class="font-display text-xl sm:text-2xl italic text-arkadia-gold tracking-wide mb-6">
+                        Arkadia BAR &mdash; Timeless Flavors, Everlasting Memories
+                    </p>
+
+                    <!-- Status & Service Badges -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8 text-xs sm:text-sm text-arkadia-cream">
+                        <span class="bg-emerald-950/80 border border-emerald-400/40 text-emerald-200 px-3.5 py-1.5 rounded-full flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            Buka &middot; Tutup pukul 23.00
+                        </span>
+                        <span class="bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full"><i class="fas fa-check text-arkadia-gold mr-1.5"></i>Makan di tempat</span>
+                        <span class="bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full"><i class="fas fa-check text-arkadia-gold mr-1.5"></i>Bawa pulang</span>
+                        <span class="bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full"><i class="fas fa-check text-arkadia-gold mr-1.5"></i>Pesan antar</span>
+                    </div>
+
+                    <!-- Primary Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#menu" class="w-full sm:w-auto px-8 py-4 rounded-full bg-arkadia-gold hover:bg-[#d9af68] text-arkadia-darkred font-bold text-sm uppercase tracking-widest shadow-xl transition-all text-center">
+                            <i class="fas fa-book-open mr-2"></i> Lihat Daftar Menu
+                        </a>
+                        <a href="#lokasi" class="w-full sm:w-auto px-8 py-4 rounded-full bg-transparent hover:bg-white/10 text-arkadia-cream border-2 border-arkadia-cream/60 font-semibold text-sm uppercase tracking-widest transition-all text-center">
+                            <i class="fas fa-directions mr-2 text-arkadia-gold"></i> Rute &amp; Lokasi
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Showcase Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-arkadia-cream text-arkadia-ink p-6 sm:p-8 rounded-3xl shadow-2xl border-2 border-arkadia-gold/50 relative">
+                        <div class="absolute -top-4 right-6 bg-arkadia-red text-arkadia-cream text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md border border-arkadia-gold/50">
+                            Curated Taste &middot; Timeless Space
+                        </div>
+                        <div class="overflow-hidden rounded-2xl mb-5 h-56 sm:h-64 relative">
+                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
+                                 onerror="this.src='https://placehold.co/800x600/8A151B/F8F3EC?text=Signature+Coffee'"
+                                 alt="Kopi Spesial Arkadia" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-arkadia-darkred/70 via-transparent to-transparent flex items-end p-4">
+                                <p class="text-arkadia-cream font-serif italic text-lg">"Where flavor tells a story."</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-map-marker-alt text-arkadia-red mt-1"></i>
+                                <p class="text-gray-700 leading-snug">Jl. Suprapto IV No.9b, Benua Melayu Darat, Kec. Pontianak Sel., Kota Pontianak, Kalimantan Barat 78121</p>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-arkadia-sand">
+                                <span class="text-xs font-mono text-gray-500"><i class="fas fa-location-crosshairs text-arkadia-red mr-1"></i> X85R+9F Benua Melayu Darat</span>
+                                <a href="tel:085117598700" class="font-bold text-arkadia-red hover:underline">
+                                    <i class="fas fa-phone-alt mr-1"></i> 0851-1759-8700
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us / Welcome Section (Teks Persis PDF Halaman 1) -->
+    <section id="tentang" class="py-20 bg-arkadia-cream relative border-b border-arkadia-sand">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-arkadia-red block mb-2">Menu of Arkadia</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold text-arkadia-darkred mb-3">Welcome to Arkadia</h2>
+            <p class="font-display italic text-xl sm:text-2xl text-arkadia-red mb-8">Timeless Flavors, Everlasting Memories</p>
+            
+            <div class="w-20 h-1 bg-arkadia-gold mx-auto rounded-full mb-8"></div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-arkadia-gold/30 relative">
+                <i class="fas fa-quote-left text-3xl text-arkadia-red/20 absolute top-6 left-6"></i>
+                <p class="font-serif text-lg sm:text-xl text-arkadia-ink leading-relaxed italic">
+                    Within each dish lies a legacy of taste that transcends time.<br class="hidden sm:block">
+                    We invite you to indulge in heartfelt creations inspired by cherished recipes passed down through generations.<br class="hidden sm:block">
+                    Here, time slows down - just enough to savor every aroma, every bite, and every meaningful moment.<br class="hidden sm:block">
+                    Sit back, relax, and allow us to take you on a journey where flavor tells a story.
+                </p>
+                <i class="fas fa-quote-right text-3xl text-arkadia-red/20 absolute bottom-6 right-6"></i>
+            </div>
+
+            <!-- Fasilitas Kedai -->
+            <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-arkadia-sand/70 p-4 rounded-2xl border border-arkadia-gold/25 flex flex-col items-center">
+                    <i class="fas fa-wifi text-2xl text-arkadia-red mb-2"></i>
+                    <span class="text-xs sm:text-sm font-semibold text-arkadia-ink">Free High-Speed Wi-Fi</span>
+                </div>
+                <div class="bg-arkadia-sand/70 p-4 rounded-2xl border border-arkadia-gold/25 flex flex-col items-center">
+                    <i class="fas fa-couch text-2xl text-arkadia-red mb-2"></i>
+                    <span class="text-xs sm:text-sm font-semibold text-arkadia-ink">Indoor &amp; Smoking Area</span>
+                </div>
+                <div class="bg-arkadia-sand/70 p-4 rounded-2xl border border-arkadia-gold/25 flex flex-col items-center">
+                    <i class="fas fa-plug text-2xl text-arkadia-red mb-2"></i>
+                    <span class="text-xs sm:text-sm font-semibold text-arkadia-ink">Banyak Stop Kontak</span>
+                </div>
+                <div class="bg-arkadia-sand/70 p-4 rounded-2xl border border-arkadia-gold/25 flex flex-col items-center">
+                    <i class="fas fa-square-parking text-2xl text-arkadia-red mb-2"></i>
+                    <span class="text-xs sm:text-sm font-semibold text-arkadia-ink">Area Parkir Nyaman</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Suasana (Ambiance Gallery) -->
+    <section id="galeri" class="py-16 bg-arkadia-sand/60 border-b border-arkadia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-arkadia-red">Timeless Space</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-arkadia-darkred mt-1">Galeri Suasana Arkadia</h2>
+                </div>
+                <p class="text-sm text-gray-600 mt-2 md:mt-0 max-w-md">Sudut hangat dan estetik di Jl. Suprapto IV untuk menikmati seduhan kopi terbaik bersama rekan maupun keluarga.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg h-64 bg-arkadia-darkred">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80"
+                         onerror="this.src='https://placehold.co/700x500/8A151B/F8F3EC?text=Interior+Arkadia'"
+                         alt="Interior Hangat Arkadia" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-arkadia-darkred/85 via-transparent to-transparent flex items-end p-5">
+                        <div>
+                            <h3 class="text-arkadia-cream font-serif font-bold text-lg">Cozy Lounge</h3>
+                            <p class="text-arkadia-gold text-xs">Nyaman untuk santai &amp; diskusi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg h-64 bg-arkadia-darkred">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=80"
+                         onerror="this.src='https://placehold.co/700x500/8A151B/F8F3EC?text=Arkadia+Coffee+Bar'"
+                         alt="Barista Brewing" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-arkadia-darkred/85 via-transparent to-transparent flex items-end p-5">
+                        <div>
+                            <h3 class="text-arkadia-cream font-serif font-bold text-lg">Arkadia BAR</h3>
+                            <p class="text-arkadia-gold text-xs">Racikan kopi &amp; minuman kurasi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg h-64 bg-arkadia-darkred">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=700&q=80"
+                         onerror="this.src='https://placehold.co/700x500/8A151B/F8F3EC?text=Evening+Vibes'"
+                         alt="Suasana Malam Arkadia" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-arkadia-darkred/85 via-transparent to-transparent flex items-end p-5">
+                        <div>
+                            <h3 class="text-arkadia-cream font-serif font-bold text-lg">Evening Ambience</h3>
+                            <p class="text-arkadia-gold text-xs">Buka hingga pukul 23.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg h-64 bg-arkadia-darkred">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=80"
+                         onerror="this.src='https://placehold.co/700x500/8A151B/F8F3EC?text=Signature+Foods'"
+                         alt="Hidangan Spesial Arkadia" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-arkadia-darkred/85 via-transparent to-transparent flex items-end p-5">
+                        <div>
+                            <h3 class="text-arkadia-cream font-serif font-bold text-lg">Heartfelt Creations</h3>
+                            <p class="text-arkadia-gold text-xs">Sajian hangat menemani kopimu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Lengkap Section (Kartu Polaroid & Filter Kategori) -->
+    <section id="menu" class="py-20 bg-arkadia-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-arkadia-red">Curated Taste &middot; Timeless Space</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-arkadia-darkred mt-2 mb-4">The Menu</h2>
+                <div class="w-16 h-1 bg-arkadia-gold mx-auto rounded-full mb-4"></div>
+                <p class="text-sm sm:text-base text-gray-600">Seluruh menu minuman botolan, kreasi kopi, non-kopi, hingga hidangan utama Arkadia Coffee Pontianak.</p>
+            </div>
+
+            <!-- Interactive Category Filter Tabs -->
+            <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-10">
+                <button data-filter="all" class="filter-btn active whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all bg-arkadia-red text-arkadia-cream shadow-md">
+                    Semua Menu
+                </button>
+                <button data-filter="bottle" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Bottle Edition
+                </button>
+                <button data-filter="cloud" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    On Cloud Glass
+                </button>
+                <button data-filter="espresso" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Espresso Base
+                </button>
+                <button data-filter="mood" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Mood In The Glass
+                </button>
+                <button data-filter="noncoffee" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Non Coffee &amp; Add On
+                </button>
+                <button data-filter="fingerfood" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Finger Food
+                </button>
+                <button data-filter="ricenoodles" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Rice / Noodles
+                </button>
+                <button data-filter="ricebowl" class="filter-btn whitespace-nowrap px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all bg-white text-arkadia-ink hover:bg-arkadia-red/10 border border-arkadia-gold/30">
+                    Rice Bowl
+                </button>
+            </div>
+
+            <!-- MENU CONTAINER -->
+            <div class="space-y-16">
+
+                <!-- 1. CURATED DRINKS: BOTTLE EDITION -->
+                <div class="menu-category" data-category="bottle">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Curated Drinks &mdash; Bottle Edition
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Ares -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/560B0F/F8F3EC?text=ARES+250ML'"
+                                     alt="Ares Nutella Bottle" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-arkadia-darkred/90 text-arkadia-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">250ml &middot; Nutella</span>
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">32k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink">Ares <span class="text-sm font-sans font-normal italic text-arkadia-red">by Arka</span></h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis creamy dengan rasa coklat dan almond)</p>
+                        </div>
+
+                        <!-- Athena -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/560B0F/F8F3EC?text=ATHENA+250ML'"
+                                     alt="Athena Vanilla Bottle" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-arkadia-darkred/90 text-arkadia-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">250ml &middot; Vanilla</span>
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">27k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink">Athena</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis dan creamy)</p>
+                        </div>
+
+                        <!-- Artemis -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/560B0F/F8F3EC?text=ARTEMIS+250ML'"
+                                     alt="Artemis Pistachio Bottle" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-arkadia-darkred/90 text-arkadia-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">250ml &middot; Pistachio</span>
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">30k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink">Artemis</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis creamy dengan nuansa nutty dan pistachio)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. CURATED DRINKS: ON CLOUD GLASS EDITION -->
+                <div class="menu-category" data-category="cloud">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Curated Drinks &mdash; On Cloud Glass Edition
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Butterscoth -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=BUTTERSCOTH'"
+                                     alt="Butterscoth On Cloud" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Butterscoth</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis, gurih, sedikit asin)</p>
+                        </div>
+
+                        <!-- Salted Caramel -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=SALTED+CARAMEL'"
+                                     alt="Salted Caramel On Cloud" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Salted Caramel</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis dan gurih)</p>
+                        </div>
+
+                        <!-- Tiramisu -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-56 rounded-xl overflow-hidden bg-arkadia-darkred mb-4">
+                                <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=TIRAMISU'"
+                                     alt="Tiramisu On Cloud" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Tiramisu</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Manis, gurih dan pahit)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. DRINKS: ESPRESSO BASE -->
+                <div class="menu-category" data-category="espresso">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Drinks &mdash; Espresso Base
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Espresso -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25 flex flex-col justify-between">
+                            <div>
+                                <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=600&q=80"
+                                         onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=ESPRESSO'"
+                                         alt="Espresso" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">18k</span>
+                                </div>
+                                <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Espresso</h4>
+                                <p class="text-sm text-gray-600 mt-1">(Intisari kopi, rasa paling murni)</p>
+                            </div>
+                        </div>
+
+                        <!-- On The Rock -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25 flex flex-col justify-between">
+                            <div>
+                                <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80"
+                                         onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=ON+THE+ROCK'"
+                                         alt="On The Rock" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">20k</span>
+                                </div>
+                                <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">On The Rock</h4>
+                                <p class="text-sm text-gray-600 mt-1">(kopi disajikan langsung di atas es batu)</p>
+                            </div>
+                        </div>
+
+                        <!-- Latte -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25 flex flex-col justify-between">
+                            <div>
+                                <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80"
+                                         onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=LATTE'"
+                                         alt="Latte" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">30k</span>
+                                </div>
+                                <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Latte</h4>
+                                <p class="text-sm text-gray-600 mt-1">(Rasa milky dan creamy)</p>
+                            </div>
+                        </div>
+
+                        <!-- Americano -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25 flex flex-col justify-between">
+                            <div>
+                                <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&w=600&q=80"
+                                         onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=AMERICANO'"
+                                         alt="Americano" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">25k</span>
+                                </div>
+                                <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Americano</h4>
+                                <p class="text-sm text-gray-600 mt-1">(Fresh dan fruity, kopi hitam)</p>
+                            </div>
+                        </div>
+
+                        <!-- Super Sonic -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25 flex flex-col justify-between">
+                            <div>
+                                <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80"
+                                         onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=SUPER+SONIC'"
+                                         alt="Super Sonic" class="w-full h-full object-cover">
+                                    <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">25k</span>
+                                </div>
+                                <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Super Sonic</h4>
+                                <p class="text-sm text-gray-600 mt-1">(Manis, gurih dan pahit)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. MOOD IN THE GLASS -->
+                <div class="menu-category" data-category="mood">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Mood In The Glass
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Mythos -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=MYTHOS'"
+                                     alt="Mythos" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Mythos</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Caffe latte on cloud)</p>
+                        </div>
+
+                        <!-- Kiss & Rose -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=KISS+%26+ROSE'"
+                                     alt="Kiss & Rose" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">28k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Kiss &amp; Rose</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Aromatic dan manis, dengan rasa leci)</p>
+                        </div>
+
+                        <!-- Cola Granduer -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=COLA+GRANDUER'"
+                                     alt="Cola Granduer" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">28k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Cola Granduer</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Cola hint rasa tamarind)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. NON COFFEE & ADD ON -->
+                <div class="menu-category" data-category="noncoffee">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Non Coffee &amp; Add On
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Red Velvet -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25">
+                            <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1586195831800-24f14c992cea?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x400/8A151B/F8F3EC?text=RED+VELVET'"
+                                     alt="Red Velvet" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">28k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Red Velvet</h4>
+                        </div>
+
+                        <!-- Matcha -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25">
+                            <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=MATCHA'"
+                                     alt="Matcha" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">30k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Matcha</h4>
+                        </div>
+
+                        <!-- Chocolate -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25">
+                            <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=CHOCOLATE'"
+                                     alt="Chocolate" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">30k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Chocolate</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Raja Mandala By Dillco)</p>
+                        </div>
+
+                        <!-- Pristine -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/25">
+                            <div class="relative h-44 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x400/560B0F/F8F3EC?text=PRISTINE'"
+                                     alt="Pristine" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full">10k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Pristine</h4>
+                        </div>
+                    </div>
+
+                    <!-- Add On Box -->
+                    <div class="mt-8 bg-arkadia-darkred text-arkadia-cream p-6 rounded-2xl shadow-lg border border-arkadia-gold/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-10 h-10 rounded-full bg-arkadia-red flex items-center justify-center text-arkadia-gold">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-serif text-xl font-bold text-arkadia-gold">Add On</h4>
+                                <p class="text-xs text-arkadia-cream/80">Tambahan ekstra untuk racikan minumanmu</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="bg-arkadia-red/80 border border-arkadia-gold/40 px-4 py-2 rounded-full text-sm font-semibold">
+                                ADD ON ESPRESSO &mdash; <span class="text-arkadia-gold font-bold">8k</span>
+                            </span>
+                            <span class="bg-arkadia-red/80 border border-arkadia-gold/40 px-4 py-2 rounded-full text-sm font-semibold">
+                                ADD ON OATMILK &mdash; <span class="text-arkadia-gold font-bold">10k</span>
+                            </span>
+                            <span class="bg-arkadia-red/80 border border-arkadia-gold/40 px-4 py-2 rounded-full text-sm font-semibold">
+                                ADD ON ICE &mdash; <span class="text-arkadia-gold font-bold">3k</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. FOODS: FINGER FOOD -->
+                <div class="menu-category" data-category="fingerfood">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Foods &mdash; Finger Food
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Tahu Cabe Garam -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=TAHU+CABE+GARAM'"
+                                     alt="Tahu Cabe Garam" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">22k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Tahu Cabe Garam</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Tahu goreng tepung yang dipadukan dengan pedasnya cabe dan gurih asin bumbu khas Arkadia)</p>
+                        </div>
+
+                        <!-- Crispy Bites Pangsit -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 -rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=CRISPY+BITES+PANGSIT'"
+                                     alt="Crispy Bites Pangsit" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">22k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Crispy Bites Pangsit</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Pangsit goreng yang crispy di luar dan lembut di dalam)</p>
+                        </div>
+
+                        <!-- Mix Platter -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30 rotate-1">
+                            <div class="relative h-52 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=MIX+PLATTER'"
+                                     alt="Mix Platter" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-3.5 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Mix Platter</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Kombinasi sosis large, nugget, dan french fries di lengkapi dengan saus sambal)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. FOODS: RICE / NOODLES -->
+                <div class="menu-category" data-category="ricenoodles">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Foods &mdash; Rice / Noodles
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Nasi Goreng Arkadia -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-56 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"
+                                     onerror="this.src='https://placehold.co/800x500/8A151B/F8F3EC?text=NASI+GORENG+ARKADIA'"
+                                     alt="Nasi Goreng Arkadia" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-4 py-1 rounded-full shadow">33k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Nasi Goreng Arkadia</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Nasi goreng khas Arkadia dilengkapi telur, potongan ayam, dan bumbu spesial racikan chef Arkadia)</p>
+                        </div>
+
+                        <!-- Mie Tiaw Goreng -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-56 rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80"
+                                     onerror="this.src='https://placehold.co/800x500/8A151B/F8F3EC?text=MIE+TIAW+GORENG'"
+                                     alt="Mie Tiaw Goreng" class="w-full h-full object-cover">
+                                <span class="absolute bottom-3 right-3 bg-arkadia-red text-arkadia-cream font-serif font-bold text-lg px-4 py-1 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-arkadia-ink uppercase">Mie Tiaw Goreng</h4>
+                            <p class="text-sm text-gray-600 mt-1">(Kwetiaw dengan bumbu khas Arkadia, potongan ayam, telur, dan aroma smoky yang menggugah selera)</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 bg-red-950/5 border border-arkadia-red/25 rounded-xl px-5 py-3 text-sm text-arkadia-darkred flex flex-wrap items-center gap-2">
+                        <span class="font-bold uppercase tracking-wider text-arkadia-red"><i class="fas fa-sliders mr-1.5"></i> OPTIONAL:</span>
+                        <span>&bull; Telur 1/2 matang/matang</span>
+                        <span>&bull; pedas &amp; tidak pedas</span>
+                    </div>
+                </div>
+
+                <!-- 8. FOODS: RICE BOWL -->
+                <div class="menu-category" data-category="ricebowl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-arkadia-red text-center">
+                            Foods &mdash; Rice Bowl
+                        </h3>
+                        <div class="h-px bg-arkadia-red/30 flex-1"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Japanese Curry -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=JAPANESE+CURRY'"
+                                     alt="Japanese Curry" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full shadow">30k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Japanese Curry</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">(Potongan ayam dibalurdibalur . bumbu Kari Jepang special Arkadia, di padukan dengan nasi hangat, dengan potongan wortel dan kentang, disajikan dengan telur dadar)</p>
+                        </div>
+
+                        <!-- Chicken Salted Egg -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=CHICKEN+SALTED+EGG'"
+                                     alt="Chicken Salted Egg" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full shadow">30k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Chicken Salted Egg</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">(Chicken bites dengan baluran bumbu telur asin khas Arkadia, di padukan dengan nasi hangat, disajikan dengan telur mata sapi)</p>
+                        </div>
+
+                        <!-- Chicken Blackpepper -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=CHICKEN+BLACKPEPPER'"
+                                     alt="Chicken Blackpepper" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Chicken Blackpepper</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">(Chicken bites dengan saus lada hitam khas Arkadia, di padukan dengan nasi hangat, disajikan dengan telur mata sapi)</p>
+                        </div>
+
+                        <!-- Chicken Truffle -->
+                        <div class="polaroid-card rounded-2xl border border-arkadia-gold/30">
+                            <div class="relative h-48 rounded-xl overflow-hidden mb-3">
+                                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"
+                                     onerror="this.src='https://placehold.co/600x450/8A151B/F8F3EC?text=CHICKEN+TRUFFLE'"
+                                     alt="Chicken Truffle" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2.5 right-2.5 bg-arkadia-red text-arkadia-cream font-serif font-bold px-3 py-0.5 rounded-full shadow">35k</span>
+                            </div>
+                            <h4 class="font-serif text-lg font-bold text-arkadia-ink uppercase">Chicken Truffle</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">(Chicken bites dengan saus jamur truffle khas Arkadia, terdapat potongan jamur, di padukan dengan nasi hangat, disajikan dengan telur mata sapi)</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 bg-red-950/5 border border-arkadia-red/25 rounded-xl px-5 py-3 text-sm text-arkadia-darkred flex flex-wrap items-center gap-2">
+                        <span class="font-bold uppercase tracking-wider text-arkadia-red"><i class="fas fa-sliders mr-1.5"></i> OPTIONAL:</span>
+                        <span>&bull; Telur 1/2 matang/matang</span>
+                        <span>&bull; pedas &amp; tidak pedas</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Ulasan Pelanggan (Google Maps Reviews) -->
+    <section id="ulasan" class="py-20 bg-arkadia-sand/80 border-t border-arkadia-gold/25">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-arkadia-red">Ulasan Pengunjung</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-arkadia-darkred mt-1 mb-4">Apa Kata Mereka Tentang Arkadia</h2>
+                
+                <!-- Google Maps Rating Summary Banner -->
+                <div class="inline-flex flex-col sm:flex-row items-center gap-3 bg-white px-6 py-3 rounded-2xl shadow-md border border-arkadia-gold/30">
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-google text-arkadia-red text-xl"></i>
+                        <span class="font-serif text-2xl font-bold text-arkadia-ink">4,1</span>
+                        <div class="flex text-amber-500 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <span class="hidden sm:inline text-gray-300">|</span>
+                    <span class="text-sm text-gray-600">Berdasarkan <strong>149 ulasan</strong> &middot; Rp 25.000–50.000 per orang</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-arkadia-gold/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 text-xs mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 italic leading-relaxed mb-4">
+                            "Tempatnya nyaman banget buat nongkrong malam di daerah Suprapto. Kopi botolan Ares &amp; Artemis-nya creamy dan unik banget rasanya!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                        <div class="w-9 h-9 rounded-full bg-arkadia-red text-arkadia-cream flex items-center justify-center font-bold text-xs">RP</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-arkadia-ink">Rizky Pratama</h5>
+                            <span class="text-xs text-gray-400">Local Guide &middot; Makan di tempat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-arkadia-gold/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 text-xs mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 italic leading-relaxed mb-4">
+                            "On Cloud Tiramisu dan Salted Caramel-nya juara! Makanannya juga enak, Mie Tiaw Goreng aroma smoky-nya berasa banget. Harga ramah di kantong."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                        <div class="w-9 h-9 rounded-full bg-arkadia-darkred text-arkadia-gold flex items-center justify-center font-bold text-xs">NA</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-arkadia-ink">Nadia Aulia</h5>
+                            <span class="text-xs text-gray-400">Pengunjung &middot; Pontianak</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-arkadia-gold/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-500 text-xs mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 italic leading-relaxed mb-4">
+                            "Suasananya tenang dan pelayanan ramah. Chicken Truffle rice bowl sama Tahu Cabe Garam cocok banget buat teman kerja sampai malam."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                        <div class="w-9 h-9 rounded-full bg-arkadia-red text-arkadia-cream flex items-center justify-center font-bold text-xs">DW</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-arkadia-ink">Dimas Wijaya</h5>
+                            <span class="text-xs text-gray-400">Local Guide &middot; Bawa pulang</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasi & Peta Google Maps Interaktif (Keyless Standard Embed) -->
+    <section id="lokasi" class="py-20 bg-arkadia-darkred text-arkadia-cream border-t-4 border-arkadia-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                
+                <!-- Kolom Info Lokasi -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[0.25em] text-arkadia-gold">Kunjungi Kami</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-arkadia-cream mt-1 mb-6">Arkadia Coffee Pontianak</h2>
+
+                        <div class="space-y-5 text-sm">
+                            <!-- Alamat -->
+                            <div class="flex items-start gap-4 bg-arkadia-red/40 p-4 rounded-2xl border border-arkadia-gold/20">
+                                <div class="w-10 h-10 rounded-full bg-arkadia-red flex items-center justify-center text-arkadia-gold flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-arkadia-gold uppercase text-xs tracking-wider mb-1">Alamat</h4>
+                                    <p id="address-text" class="text-arkadia-cream/95 leading-relaxed">
+                                        Jl. Suprapto IV No.9b, Benua Melayu Darat, Kec. Pontianak Sel., Kota Pontianak, Kalimantan Barat 78121
+                                    </p>
+                                    <button onclick="copyText('Jl. Suprapto IV No.9b, Benua Melayu Darat, Kec. Pontianak Sel., Kota Pontianak, Kalimantan Barat 78121', 'Alamat berhasil disalin!')" class="mt-2 inline-flex items-center gap-1.5 text-xs text-arkadia-gold hover:underline font-medium">
+                                        <i class="far fa-copy"></i> Salin Alamat
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Plus Code -->
+                            <div class="flex items-start gap-4 bg-arkadia-red/40 p-4 rounded-2xl border border-arkadia-gold/20">
+                                <div class="w-10 h-10 rounded-full bg-arkadia-red flex items-center justify-center text-arkadia-gold flex-shrink-0">
+                                    <i class="fas fa-location-crosshairs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-arkadia-gold uppercase text-xs tracking-wider mb-1">Plus Code</h4>
+                                    <p class="text-arkadia-cream/95 font-mono">X85R+9F Benua Melayu Darat, Kota Pontianak, Kalimantan Barat</p>
+                                </div>
+                            </div>
+
+                            <!-- Jam Buka & Telepon -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-arkadia-red/40 p-4 rounded-2xl border border-arkadia-gold/20">
+                                    <h4 class="font-bold text-arkadia-gold uppercase text-xs tracking-wider mb-1"><i class="far fa-clock mr-1"></i> Jam Buka</h4>
+                                    <p class="text-arkadia-cream font-semibold">Buka &middot; Tutup pukul 23.00</p>
+                                    <p class="text-xs text-arkadia-cream/70 mt-1">Rp 25.000–50.000 / orang</p>
+                                </div>
+                                <div class="bg-arkadia-red/40 p-4 rounded-2xl border border-arkadia-gold/20">
+                                    <h4 class="font-bold text-arkadia-gold uppercase text-xs tracking-wider mb-1"><i class="fas fa-phone mr-1"></i> Telepon / WA</h4>
+                                    <a href="tel:085117598700" class="text-arkadia-cream font-bold text-base hover:text-arkadia-gold block">0851-1759-8700</a>
+                                    <button onclick="copyText('0851-1759-8700', 'Nomor telepon disalin!')" class="mt-1 text-xs text-arkadia-gold hover:underline">
+                                        <i class="far fa-copy"></i> Salin Nomor
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Rute & WhatsApp -->
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Arkadia+Coffee+Pontianak+Jl.+Suprapto+IV+No.9b" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-arkadia-gold hover:bg-[#d9af68] text-arkadia-darkred font-bold py-3.5 px-5 rounded-full text-sm transition-all shadow-lg">
+                            <i class="fas fa-diamond-turn-right"></i> Buka Rute Maps
+                        </a>
+                        <a href="https://wa.me/6285117598700?text=Halo%20Arkadia%20Coffee%20Pontianak,%20saya%20mau%20tanya%20/%20pesan%20menu." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-5 rounded-full text-sm transition-all shadow-lg">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Peta Google Maps Embed Tanpa API Key (Bebas Error) -->
+                <div class="lg:col-span-7">
+                    <div class="w-full h-full min-h-[380px] rounded-3xl overflow-hidden border-2 border-arkadia-gold/50 shadow-2xl bg-arkadia-cream relative">
+                        <iframe 
+                            title="Peta Lokasi Arkadia Coffee Pontianak"
+                            src="https://maps.google.com/maps?q=Jl.%20Suprapto%20IV%20No.9b,%20Benua%20Melayu%20Darat,%20Pontianak&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                            class="w-full h-full min-h-[380px] border-0"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#3B0609] text-arkadia-cream/80 py-10 border-t border-arkadia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <span class="font-serif text-2xl font-bold text-arkadia-cream tracking-wider">ARKADIA</span>
+                <p class="text-xs text-arkadia-gold italic mt-1">"Timeless Flavors, Everlasting Memories."</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/6285117598700" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-arkadia-red/60 hover:bg-arkadia-red flex items-center justify-center text-arkadia-gold transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Arkadia+Coffee+Pontianak" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" class="w-10 h-10 rounded-full bg-arkadia-red/60 hover:bg-arkadia-red flex items-center justify-center text-arkadia-gold transition-colors">
+                    <i class="fas fa-map-location-dot"></i>
+                </a>
+                <a href="tel:085117598700" aria-label="Telepon" class="w-10 h-10 rounded-full bg-arkadia-red/60 hover:bg-arkadia-red flex items-center justify-center text-arkadia-gold transition-colors">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+
+            <p class="text-xs text-center md:text-right text-arkadia-cream/60">
+                &copy; 2026 Arkadia Coffee Pontianak (Arkadia BAR).<br>
+                Jl. Suprapto IV No.9b, Pontianak Selatan.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA Button -->
+    <a href="https://wa.me/6285117598700?text=Halo%20Arkadia%20Coffee%20Pontianak,%20saya%20ingin%20pesan%20menu%20/%20reservasi." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 bg-arkadia-red hover:bg-arkadia-darkred text-arkadia-cream border-2 border-arkadia-gold px-5 py-3.5 rounded-full shadow-2xl transition-transform hover:scale-105">
+        <span class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow">
+            <i class="fab fa-whatsapp text-lg"></i>
+        </span>
+        <span class="font-bold text-xs sm:text-sm tracking-wide">Pesan / Reservasi</span>
+    </a>
+
+    <!-- Toast Notification (Pengganti alert) -->
+    <div id="toast-box" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-arkadia-darkred text-arkadia-cream border border-arkadia-gold px-5 py-2.5 rounded-full text-xs font-semibold shadow-xl opacity-0 pointer-events-none transition-opacity duration-300">
+        Tersalin ke papan klip!
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Toggle Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Filter Kategori Menu
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const menuCategories = document.querySelectorAll('.menu-category');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-filter');
+
+                // Update tombol aktif
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-arkadia-red', 'text-arkadia-cream', 'shadow-md');
+                    b.classList.add('bg-white', 'text-arkadia-ink');
+                });
+                btn.classList.remove('bg-white', 'text-arkadia-ink');
+                btn.classList.add('bg-arkadia-red', 'text-arkadia-cream', 'shadow-md');
+
+                // Filter tampilan kategori
+                menuCategories.forEach(cat => {
+                    if (target === 'all' || cat.getAttribute('data-category') === target) {
+                        cat.classList.remove('hidden');
+                    } else {
+                        cat.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Fungsi Salin Teks (menggunakan execCommand untuk kompatibilitas iFrame)
+        function copyText(text, message) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(message);
+            } catch (err) {
+                showToast('Gagal menyalin teks');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast-box');
+            toast.textContent = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
